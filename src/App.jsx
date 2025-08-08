@@ -11,6 +11,7 @@ const App = () => {
   const [todoList, setTodoList] = useState([]);
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
+  const [dark,setDark] = useState(false)
 
   // useEffect(() => {
   //   fetchTodos();
@@ -109,7 +110,7 @@ const App = () => {
   return (
     <div className="container">
       <ToastContainer position="top-center" autoClose={2000} />
-      <div className="card-container">
+      <div className={`card-container ${dark ? "dark-card" : ""}`}>
         <div className="todo-head">
           <h1 className="todo-list-head">Todo list</h1>
           <img
@@ -117,6 +118,9 @@ const App = () => {
             className="img"
             alt="todo-logo"
           />
+          <div onClick={()=>{setDark(prev => !prev)}} className="dark-icon-card">
+            {dark ? <i class="bi bi-brightness-high-fill"></i> :<i class="bi bi-moon-stars-fill"></i>}
+          </div>
         </div>
 
         <div className="card">
@@ -124,7 +128,7 @@ const App = () => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="You Write anything!"
+            placeholder="Add a new task..."
             className="input"
           />
           <button className="btn" onClick={addData}>
@@ -166,7 +170,7 @@ const App = () => {
                           className="icon icon2"
                           onClick={() => handleUpdate(todo._id)}
                         >
-                          <i className="bi bi-check-circle-fill"></i>
+                          <i className={`bi bi-check-circle-fill icon2 ${dark ? "icon-dark" : ""}`}></i>
                         </span>
                       </>
                     ) : (
@@ -186,14 +190,14 @@ const App = () => {
                         className="icon"
                         style={{ marginLeft: "10px" }}
                       >
-                        <i className="bi bi-trash-fill icon-del"></i>
-                      </span>
+                        <i className={`bi bi-trash-fill icon-del ${dark ? "icon-dark" : ""}`}></i>
+                      </span> 
 
                       <span
                         onClick={() => startEdit(todo._id, todo.text)}
                         className="icon"
                       >
-                        <i className="bi bi-pencil-fill icon1"></i>
+                        <i className= {`bi bi-pencil-fill icon1 ${dark ? "icon-dark" : ""}`}></i>
                       </span>
                     </div>
                   </li>
