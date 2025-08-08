@@ -1,0 +1,191 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+/* Container */
+.container {
+  background-image: radial-gradient(rgb(134, 134, 213), rgb(83, 83, 188), rgb(19, 19, 218));
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+/* Card Container */
+.card-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 550px;
+  padding: 30px 20px 50px;
+  margin-top: 60px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.todo-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.todo-list-head {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.img {
+  height: 40px;
+  width: 40px;
+}
+
+/* Input Card */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  background: #edeef0;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  background: transparent;
+  padding: 15px;
+  resize: none;
+  overflow: hidden;
+}
+
+/* Add Button */
+.btn {
+  border: none;
+  outline: none;
+  padding: 16px 30px;
+  background: #355df0;
+  color: #ffffff;
+  border-radius: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #254ae0;
+}
+
+/* Todo Items */
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item-container {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: rgb(235, 228, 228);
+  
+  border-radius: 20px;
+  padding: 15px;
+  margin-top: 20px;
+  word-break: break-word;
+}
+.todo-item-container:hover{
+  box-shadow: 1px 1px 1px 1px rgb(68, 44, 146);
+}
+
+/* Todo Text */
+.todo-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 80%;
+  font-size: 18px;
+  color: darkblue;
+  line-height: 1.5;
+}
+
+/* Line-through for completed tasks */
+.line-through {
+  text-decoration: line-through;
+}
+
+/* Icons */
+.icon {
+  scale: 1.5;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.icon2:hover{
+  color: green;
+}
+
+.icon1:hover {
+  color: #355df0;
+}
+
+.icon-del:hover {
+  color: red;
+}
+
+/* Checkbox */
+.checkbox {
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .card-container {
+    padding: 20px 15px 40px;
+    margin-top: 40px;
+  }
+
+  .todo-list-head {
+    font-size: 24px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  .input {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .todo-text {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .icon {
+    scale: 1.3;
+    margin-top: 8px;
+  }
+
+  .todo-item-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
