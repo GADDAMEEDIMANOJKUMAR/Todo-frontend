@@ -1,9 +1,8 @@
-
-
 import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { PropagateLoader } from "react-spinners";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -16,7 +15,7 @@ const App = () => {
   // useEffect(() => {
   //   fetchTodos();
   // }, []);
-   useEffect(() => {
+  useEffect(() => {
     console.log("API_BASE_URL:", API_BASE_URL); // Debug: Should log your backend URL
     if (!API_BASE_URL) {
       toast.error("API_BASE_URL is undefined. Check your .env file.");
@@ -133,66 +132,76 @@ const App = () => {
           </button>
         </div>
 
-        <div className="details-card">
-          <ol>
-            <div className="card-details">
-              {todoList.map((todo) => (
-                <li key={todo._id} className="todo-item-container">
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    checked={todo.completed}
-                    onChange={() =>
-                      handleToggle(todo._id, todo.completed, todo.text)
-                    }
-                  />
+        {todoList.length ===0  ? (
+          <PropagateLoader
+            color="#5310e5"
+            cssOverride={{ textAlign: "center"}}
+            loading
+            size={20}
+            speedMultiplier={2}
+          />
+        ) : (
+          <div className="details-card">
+            <ol>
+              <div className="card-details">
+                {todoList.map((todo) => (
+                  <li key={todo._id} className="todo-item-container">
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      checked={todo.completed}
+                      onChange={() =>
+                        handleToggle(todo._id, todo.completed, todo.text)
+                      }
+                    />
 
-                  {editId === todo._id ? (
-                    <>
-                      <input
-                        className="input"
-                        value={editText}
-                        onChange={(e) => setEditText(e.target.value)}
-                      />
+                    {editId === todo._id ? (
+                      <>
+                        <input
+                          className="input"
+                          value={editText}
+                          onChange={(e) => setEditText(e.target.value)}
+                        />
+                        <span
+                          className="icon icon2"
+                          onClick={() => handleUpdate(todo._id)}
+                        >
+                          <i className="bi bi-check-circle-fill"></i>
+                        </span>
+                      </>
+                    ) : (
                       <span
-                        className="icon icon2"
-                        onClick={() => handleUpdate(todo._id)}
+                        className={`todo-text ${
+                          todo.completed ? "line-through" : ""
+                        }`}
+                        style={{ marginLeft: "8px", fontSize: "25px" }}
                       >
-                        <i className="bi bi-check-circle-fill"></i>
+                        {todo.text}
                       </span>
-                    </>
-                  ) : (
-                    <span
-                      className={`todo-text ${
-                        todo.completed ? "line-through" : ""
-                      }`}
-                      style={{ marginLeft: "8px", fontSize: "25px" }}
-                    >
-                      {todo.text}
-                    </span>
-                  )}
+                    )}
 
-                  <div className="icon-btn">
-                    <span
-                      onClick={() => handleDelete(todo._id)}
-                      className="icon"
-                      style={{ marginLeft: "10px" }}
-                    >
-                      <i className="bi bi-trash-fill icon-del"></i>
-                    </span>
+                    <div className="icon-btn">
+                      <span
+                        onClick={() => handleDelete(todo._id)}
+                        className="icon"
+                        style={{ marginLeft: "10px" }}
+                      >
+                        <i className="bi bi-trash-fill icon-del"></i>
+                      </span>
 
-                    <span
-                      onClick={() => startEdit(todo._id, todo.text)}
-                      className="icon"
-                    >
-                      <i className="bi bi-pencil-fill icon1"></i>
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </div>
-          </ol>
-        </div>
+                      <span
+                        onClick={() => startEdit(todo._id, todo.text)}
+                        className="icon"
+                      >
+                        <i className="bi bi-pencil-fill icon1"></i>
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </div>
+            </ol>
+          </div>
+        )}
       </div>
     </div>
   );
