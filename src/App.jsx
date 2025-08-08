@@ -149,7 +149,7 @@ const App = () => {
             <ol>
               <div className="card-details">
                 {todoList.map((todo) => (
-                  <li key={todo._id} className="todo-item-container">
+                  <li key={todo._id} className={`todo-item-container ${dark ? "list-items" : ""}`} >
                     <input
                       type="checkbox"
                       className="checkbox"
@@ -178,7 +178,7 @@ const App = () => {
                         className={`todo-text ${
                           todo.completed ? "line-through" : ""
                         }`}
-                        style={{ marginLeft: "8px", fontSize: "25px" }}
+                        style={{ marginLeft: "8px", fontSize: "25px"}}
                       >
                         {todo.text}
                       </span>
