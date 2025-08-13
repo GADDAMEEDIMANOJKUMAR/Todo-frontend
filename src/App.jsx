@@ -12,6 +12,7 @@ const App = () => {
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
   const [dark, setDark] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
   //   fetchTodos();
@@ -23,6 +24,7 @@ const App = () => {
       return;
     }
     fetchTodos();
+    setLoading(false);
   }, []);
 
   const fetchTodos = async () => {
@@ -145,7 +147,7 @@ const App = () => {
           </button>
         </div>
 
-        {todoList.length === 0 ? (
+        {loading ? (
           <PropagateLoader
             color="#5310e5"
             cssOverride={{ textAlign: "center" }}
@@ -153,6 +155,8 @@ const App = () => {
             size={20}
             speedMultiplier={2}
           />
+        ) : todoList.length === 0 ? (
+          <h1 className="error">No Tasks</h1>
         ) : (
           <div className="details-card">
             <ol>
